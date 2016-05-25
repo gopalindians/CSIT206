@@ -11,6 +11,7 @@ php -S localhost:80 -t public
 database name: csit206
 
 table name : account
+
 schema: ```CREATE TABLE account
         (
           id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
