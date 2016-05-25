@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </div>
-            <img src="http://semantic-ui.com/images/avatar/large/elliot.jpg">
+            <img src="http://semantic-ui.com/images/avatar/large/joe.jpg">
         </div>
         <div class="content">
             <a class="header">Student</a>
@@ -55,7 +55,7 @@
                     </div>
                 </div>
             </div>
-            <img src="http://semantic-ui.com/images/avatar/large/jenny.jpg">
+            <img src="http://semantic-ui.com/images/avatar/large/veronika.jpg">
         </div>
         <div class="content">
             <a class="header">Lecturer</a>

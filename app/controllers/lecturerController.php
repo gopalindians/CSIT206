@@ -10,9 +10,17 @@
 
 //GET | login | lecturer
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && $_GET['r'] === 'login-lecturer.php') {
-    require '../views/includes/header.php';
-    require '../views/lecturer/login-lecturer.php';
-    require '../views/includes/footer.php';
+
+    session_start();
+    if (isset($_SESSION['la']) && $_SESSION['la'] === 'yes') {
+        header("Location: " . $_SERVER['REMOTE_HOST'] . '/index.php?r=dashboard-lecturer.php');
+    } else {
+        session_destroy();
+        require '../views/includes/header.php';
+        require '../views/lecturer/login-lecturer.php';
+        require '../views/includes/footer.php';
+    }
+
 
 //POST | login | lecturer
 } else if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_GET['r'] === 'login-lecturer.php') {
@@ -22,9 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $_GET['r'] === 'login-lecturer.php')
 
     if (($username === 'CSIT206' || $username === 'csit206 ') && ($password === 'UGIT2016' || $password === 'ugit2016')) {
         session_start();
-        $_SESSION['la'] = "yes";
-
-
+        $_SESSION['la'] = 'yes';
 
         header("Location: " . $_SERVER['REMOTE_HOST'] . '/index.php?r=dashboard-lecturer.php');
     } else {
@@ -48,14 +54,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $_GET['r'] === 'login-lecturer.php')
 
 //POST | dashboard |lecturer
 } else if (($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET') && $_GET['r'] === 'dashboard-lecturer.php') {
-
+    session_start();
     if (isset($_SESSION['la']) && $_SESSION['la'] === 'yes') {
-        echo 'yes';
-    }else{
-        echo 'no';
+        require '../views/includes/header.php';
+        require '../views/lecturer/dashboard.php';
+        require '../views/includes/footer.php';
+
+    } else {
+        session_destroy();
+        header("Location: " . $_SERVER['REMOTE_HOST'] . '/index.php?r=login-lecturer.php');
     }
 
-    require '../views/includes/header.php';
-    require '../views/lecturer/dashboard.php';
-    require '../views/includes/footer.php';
+
 }

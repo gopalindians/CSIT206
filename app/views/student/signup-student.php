@@ -7,11 +7,35 @@
 </div>
 
 
+<?php if (isset($error) && count($error) > 0): ?>
+    <div class="ui warning message">
+        <i class="close icon"></i>
+        <?php for ($i = 0; $i < count($error); $i++): ?>
+            <div class="header">
+                <?= $error[$i]['error']; ?>
+            </div>
+            Please try with different combination
+        <?php endfor; ?>
+    </div>
+<?php endif; ?>
+
+<?php if (isset($success) && count($success) > 0): ?>
+    <div class="ui success message">
+        <i class="close icon"></i>
+        <?php for ($i = 0; $i < count($success); $i++): ?>
+            <div class="header">
+                <?= $success[$i]['success']; ?>
+            </div>
+            Click login page to login <a href="<?= $_SERVER['HTTP_HOST'].'/index.php?r=login-student.php'  ?>">Link</a>
+        <?php endfor; ?>
+    </div>
+<?php endif; ?>
+
 
 <div class="ui vertical stripe quote segment">
     <div class="ui two column middle aligned center aligned grid very relaxed stackable grid">
         <div class="column">
-            <form class="ui form segment" action="/index.php?r=signup-student.php">
+            <form class="ui form segment" action="/index.php?r=signup-student.php" method="post">
                 <div class="ui form">
                     <div class="field">
                         <!--<label>Username</label>-->
@@ -38,7 +62,7 @@
                     <div class="field">
                         <!--<label>Password</label>-->
                         <div class="ui left icon input">
-                            <input type="password" name="password">
+                            <input type="password" placeholder="Password" name="password">
                             <i class="lock icon"></i>
                         </div>
                     </div>
@@ -69,7 +93,25 @@
                         rules: [
                             {
                                 type: 'empty',
-                                prompt: 'Please enter your name'
+                                prompt: 'Please enter your Username'
+                            }
+                        ]
+                    },
+                    firstname: {
+                        identifier: 'firstname',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: 'Please enter your First name'
+                            }
+                        ]
+                    },
+                    lastname: {
+                        identifier: 'lastname',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: 'Please enter your Last name'
                             }
                         ]
                     },
@@ -78,11 +120,11 @@
                         rules: [
                             {
                                 type: 'empty',
-                                prompt: 'Please enter a password'
+                                prompt: 'Please enter a Password'
                             },
                             {
                                 type: 'minLength[6]',
-                                prompt: 'Your password must be at least {ruleValue} characters'
+                                prompt: 'Your Password must be at least {ruleValue} characters'
                             }
                         ]
                     },
